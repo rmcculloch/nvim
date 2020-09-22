@@ -1,0 +1,10 @@
+{
+	"python.jediMemoryLimit": -1,
+  "diagnostic.checkCurrentLine": true,
+  "python.autoComplete.addBrackets": true,
+  "python.venvFolders": ["envs",".pyenv",".direnv",".local"],
+  "python.venvPath": "~/.local/share/virtualenv",
+  "python.pythonPath": "/home/richard/.pyenv/shims/python3",
+  "python.pipenvPath": "/home/richard/.pyenv/shims/pipenv"
+}
+
