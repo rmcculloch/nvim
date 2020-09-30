@@ -211,7 +211,8 @@ nmap <leader>v :e $MYVIMRC<CR>
 
 "Sets the printer
 "set pdev=HP_LaserJet_400_colorMFP_M475dn
-set pdev=Hewlett-Packard-HP-LaserJet-400-colorMFP-M475dn
+"set pdev=Hewlett-Packard-HP-LaserJet-400-colorMFP-M475dn
+set pdev=Hewlett-Packard_HP_LaserJet_400_colorMFP_M475dn
 
 "}}}
 "{{{Invisibles
