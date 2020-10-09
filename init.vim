@@ -282,6 +282,32 @@ nnoremap <leader>[ :bprevious<CR>
 "Also see the Close-Buffers Plugin. Currently have <leader>ob set to close all
 "other buffers other than the current one
 
+"The function below allows you to bring the output of a shell command into a
+"new Vim buffer. One use I have for this is for when I run programs from Vim
+"and want the output in a new buffer so I can search, edit, save, etc.
+"e.g. `:Shell python! %`
+command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
+function! s:RunShellCommand(cmdline)
+  echo a:cmdline
+  let expanded_cmdline = a:cmdline
+  for part in split(a:cmdline, ' ')
+     if part[0] =~ '\v[%#<]'
+        let expanded_part = fnameescape(expand(part))
+        let expanded_cmdline = substitute(expanded_cmdline, part, expanded_part, '')
+     endif
+  endfor
+  botright new
+" Original line below (commented out)
+" setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+  setlocal bufhidden=hide noswapfile nowrap
+  call setline(1, 'You entered:    ' . a:cmdline)
+  call setline(2, 'Expanded Form:  ' .expanded_cmdline)
+  call setline(3,substitute(getline(2),'.','=','g'))
+  execute '$read !'. expanded_cmdline
+  setlocal nomodifiable
+  1
+endfunction
+
 "}}}
 "{{{Line Formatting
 
@@ -381,6 +407,16 @@ map <leader>cx :! xelatex %<CR><CR>
 map <leader>dp :! mupdf $(echo % \| sed 's/tex$/pdf/') & disown<CR><CR>
 "Note: once the pdf is open you can leave it open and just press `r`
 "(a mupdf command) to reload after you make changes and you've recompiled.
+
+"}}}
+"{{{{Run Python
+
+"To execute python program and see the output.
+nnoremap <F5> :exe ':!python %'<CR>
+
+"Same as above but puts output in a scratch buffer where you can do more with it.
+"This relies on a custom function included in the 'Buffers' section.
+nnoremap <F6> :exe ':Shell python %'<CR>
 
 "}}}
 "}}}
@@ -490,8 +526,9 @@ let g:Tex_TEXINPUTS = '~/texmf/mypackages/**,./**'
 "}}}
 "{{{VIM-VINEGAR
 
-"Initiate with dot files hidden. 'gh' to toggle on/off
-let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+" Press "I" to toggle on/off the Netrw help/guide
+"Initiate with dot files hidden. 'gh' to toggle on/off
+" let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 " let g:netrw_liststyle = 1
 
 "Pressing '-' doesn't work to access Netrw when markdown files are open.
@@ -538,6 +575,7 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
 " Single mappings
+let g:which_key_map['ob']   = [ ':Bdelete other'                                                           , 'Delete all buffers except current' ]
 let g:which_key_map['c']    = [ ':silent !chromium-browser %'                                              , 'Open in chromium' ]
 let g:which_key_map['f']    = [ ':silent !firefox %'                                                       , 'Open in firefox' ]
 let g:which_key_map['g']    = [ 'Goyo'                                                                     , 'Goyo' ]
