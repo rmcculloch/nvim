@@ -71,5 +71,5 @@ used and provide a list of other options. You need to make sure the linter is
 installed in the environment associated with the interpreter you've selected.
 It also gives you the option to install the linter you choose if it isn't
 already installed. Just make sure you're working with the right interpreter in
-the right environment. Or can install the linter via `pip intall <package>` or
+the right environment. Or can install the linter via `pip install <package>` or
 `pipenv install <package>`
