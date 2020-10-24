@@ -9,10 +9,9 @@
 
 Visit https://github.com/junegunn/vim-plug
 ```
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
-
 ## Install Neovim Python Package
 
 `pip3 install --user neovim`
@@ -27,6 +26,10 @@ I prefer to use nvm to install node so install that first - see https://github.c
 Note you may find a conflict with coc.nvim (Conquer of Completion) and the
 latest version of node installed by nvm.  If so, just install the version of
 node that coc.nvim wants to use, e.g. `nvm install 12.11.1`
+
+## Install Neovim Package
+
+`npm install -g neovim`
 
 ## Install Plugins
 
