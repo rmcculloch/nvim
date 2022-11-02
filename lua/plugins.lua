@@ -57,7 +57,7 @@ return require('packer').startup(function(use)
    }
 
     -- Luasnip plugin causing a bug with not executing commands when selected
-    -- from the dropdown menu (e.g. :PackerSync......). As a work-around your
+    -- from the dropdown menu (e.g. :PackerSync). As a work-around you
     -- can execute the command directly rather than selecting it from the
     -- dropdown menu.
    use {

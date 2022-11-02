@@ -19,10 +19,13 @@ of the Lua-based plugins. A good way to do this is to install from source (see
 bottom of the 'Installing Neovim' page).
 
 - Install git if not already on your system.
-- Download the source code from (https://github.com/neovim/neovim)
-- Install build prerequisites.
+- Download Neovim: ` git clone https://github.com/neovim/neovim`
+- To use the latest stable branch `git checkout stable`
+- Install the build prerequisites.
 - Build and install Neovim (best to use method which isolates install in
-  $HOME/neovim).
+  $HOME/neovim):
+  `make CMAKE_BUILD_TYPE=RelWithDebInfo "CMAKE_INSTALL_PREFIX=$HOME/neovim"`
+  `make install`
 - Add `export PATH="$HOME/neovim/bin:$PATH"` and `alias vim="nvim"` to your
   shell's config file (e.g. .zshrc).
 - Source config file or restart terminal.
@@ -48,8 +51,8 @@ bottom of the 'Installing Neovim' page).
 - Start Neovim `vim`
 - `:PackerSync` will install the included plugins. These can be viewed in
   ~/.congig/nvim/lua/plugins.lua. Refer to their Github pages for the details.
-Note that it may take some time to install the plugin files, especially those
-relating to treesitter and the wide range of file types it supports.
+- If you get an error related to treesitter parsing lua files then run
+  `:TSUpdate` and restart Neovim.
 
 ### Install Patched Font For Your Terminal
 Some of the Neovim plugins require additional icons for the file tree
