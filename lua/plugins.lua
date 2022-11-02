@@ -6,7 +6,8 @@ return require('packer').startup(function(use)
 
     use {
         'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
+        -- run = ':TSUpdate',
+        run = function() require('nvim-treesitter.install').update({with_sync = true }) end,
         config = function() require'config.treesitter-config' end,
     }
 
@@ -31,7 +32,7 @@ return require('packer').startup(function(use)
         config = function() require'config.tree-config' end,
     }
 
-    -- Enabling lualine plugin can break the Vim welcome page (i.e. doesn't display)
+    -- Enabling lualine plugin can break the Vim welcome page (i.e. it doesn't display)
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true },
@@ -49,21 +50,25 @@ return require('packer').startup(function(use)
         config = function() require'config.trim-config' end,
     }
 
-   -- Install latexlive-full on system for complete functionality.
+   -- Install texlive-full on system for complete functionality.
    use {
        'lervag/vimtex',
        config = function() require'config.vimtex-config' end,
    }
 
-   -- Luasnip plugin causing a bug with not executing commands when selected
-   -- from dropdown (e.g. :PackerSync......)
-   use {'L3MON4D3/LuaSnip',
-       run = 'make install_jsregexp',
+    -- Luasnip plugin causing a bug with not executing commands when selected
+    -- from the dropdown menu (e.g. :PackerSync......). As a work-around your
+    -- can execute the command directly rather than selecting it from the
+    -- dropdown menu.
+   use {
+       'L3MON4D3/LuaSnip',
+       -- run = 'make install_jsregexp',
        -- tag = 'v<CurrentMajor>.*',
-       -- config = function() require'config.luasnip-config' end,
-    }
+       config = function() require'config.luasnip-config' end,
+   }
 
    use {'saadparwaiz1/cmp_luasnip'}
+
    use {'hrsh7th/cmp-nvim-lsp'}
 
    use {'hrsh7th/cmp-buffer'}
@@ -87,7 +92,7 @@ return require('packer').startup(function(use)
 
    use {
        'neovim/nvim-lspconfig',
-        config = function() require("config.lspconfig-config") end,
+        config = function() require('config.lspconfig-config') end,
        }
 
    use {'rafamadriz/friendly-snippets'}
