@@ -1,15 +1,11 @@
 return require('packer').startup(function(use)
+
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-    use {'tpope/vim-surround'}
+-- *** GENERAL ***
 
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        -- run = ':TSUpdate',
-        run = function() require('nvim-treesitter.install').update({with_sync = true }) end,
-        config = function() require'config.treesitter-config' end,
-    }
+    use {'tpope/vim-surround'}
 
     use {
         'windwp/nvim-autopairs',
@@ -33,10 +29,11 @@ return require('packer').startup(function(use)
     }
 
     -- Enabling lualine plugin can break the Vim welcome page (i.e. it doesn't display)
+    -- Happens only when config file is enabled to override options.
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-        config = function() require'config.lualine-config' end,
+        -- config = function() require'config.lualine-config' end,
     }
 
     use {
@@ -50,78 +47,92 @@ return require('packer').startup(function(use)
         config = function() require'config.trim-config' end,
     }
 
-   -- Install texlive-full on system for complete functionality.
-   use {
-       'lervag/vimtex',
-       config = function() require'config.vimtex-config' end,
-   }
+    use {
+        'CRAG666/code_runner.nvim',
+        requires = 'nvim-lua/plenary.nvim',
+        config = function() require'config.coderunner-config' end,
+    }
 
-    -- Luasnip plugin causing a bug with not executing commands when selected
-    -- from the dropdown menu (e.g. :PackerSync). As a work-around you
-    -- can execute the command directly rather than selecting it from the
-    -- dropdown menu.
-   use {
-       'L3MON4D3/LuaSnip',
-       -- run = 'make install_jsregexp',
-       -- tag = 'v<CurrentMajor>.*',
-       config = function() require'config.luasnip-config' end,
-   }
+    -- Install texlive-full on system for complete functionality.
+    use {
+        'lervag/vimtex',
+        config = function() require'config.vimtex-config' end,
+    }
 
-   use {'saadparwaiz1/cmp_luasnip'}
+-- *** CMP ***
 
-   use {'hrsh7th/cmp-nvim-lsp'}
+    use {'onsails/lspkind-nvim'}
 
-   use {'hrsh7th/cmp-buffer'}
+    use {'hrsh7th/cmp-nvim-lsp'}
 
-   use {'hrsh7th/cmp-nvim-lua'}
+    use {'hrsh7th/cmp-nvim-lua'}
 
-   use {'octaltree/cmp-look'}
+    use {'octaltree/cmp-look'}
 
-   use {'hrsh7th/cmp-cmdline'}
+    use {'hrsh7th/cmp-path'}
 
-   use {'hrsh7th/cmp-path'}
+    use {'hrsh7th/cmp-buffer'}
 
-   use {'onsails/lspkind-nvim'}
+    -- use {'hrsh7th/cmp-cmdline'}
 
-   use {
-       'hrsh7th/nvim-cmp',
-       config = function() require'config.cmp-config' end,
-   }
+    use {'saadparwaiz1/cmp_luasnip'}
 
-   use {'williamboman/nvim-lsp-installer'}
+    use {
+        'hrsh7th/nvim-cmp',
+        config = function() require'config.cmp-config' end,
+    }
 
-   use {
-       'neovim/nvim-lspconfig',
-        config = function() require('config.lspconfig-config') end,
-       }
+--*** LUASNIP ***
 
-   use {'rafamadriz/friendly-snippets'}
+    use {
+        'L3MON4D3/LuaSnip',
+        -- tag = 'v<CurrentMajor>.*',
+        config = function() require'config.luasnip-config' end,
+    }
 
-   use {
-       'jose-elias-alvarez/null-ls.nvim',
-       requires = {'nvim-lua/plenary.nvim'},
-       config = function() require'config.null-ls-config' end,
-   }
+    -- add vscode snippets here
+    use {'rafamadriz/friendly-snippets'}
+    use {'ylcnfrht/vscode-python-snippet-pack'}
 
-   use {
-       'nvim-telescope/telescope.nvim',
-       requires = { {'nvim-lua/plenary.nvim'} },
-       config = function() require'config.telescope-config' end,
-   }
+-- *** LSP ***
 
-   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+    use {'williamboman/nvim-lsp-installer'}
 
-   use {
-       'nvim-telescope/telescope-media-files.nvim',
-       requires = { {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope.nvim'}, {'nvim-lua/popup.nvim'} },
-   }
+    use {
+        'neovim/nvim-lspconfig',
+         config = function() require('config.lspconfig-config') end,
+        }
 
-   use { 'nvim-telescope/telescope-file-browser.nvim' }
+    use {
+        'jose-elias-alvarez/null-ls.nvim',
+        requires = {'nvim-lua/plenary.nvim'},
+        config = function() require'config.null-ls-config' end,
+    }
 
-   use {
-       'CRAG666/code_runner.nvim',
-       requires = 'nvim-lua/plenary.nvim',
-       config = function() require'config.coderunner-config' end,
-   }
+-- *** TELESCOPE ***
+
+    use {
+        'nvim-telescope/telescope.nvim',
+        requires = { {'nvim-lua/plenary.nvim'} },
+        config = function() require'config.telescope-config' end,
+    }
+
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+
+    use {
+        'nvim-telescope/telescope-media-files.nvim',
+        requires = { {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope.nvim'}, {'nvim-lua/popup.nvim'} },
+    }
+
+    use { 'nvim-telescope/telescope-file-browser.nvim' }
+
+-- *** TREESITTER ***
+
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        -- run = ':TSUpdate',
+        run = function() require('nvim-treesitter.install').update({with_sync = true }) end,
+        config = function() require'config.treesitter-config' end,
+    }
 
 end)

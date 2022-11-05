@@ -45,8 +45,11 @@ vim.opt.smartcase = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+-- Set termgui colors (supported by most terminals).
+vim.opt.termguicolors = true
+
 -- Highlights the line where cursor is to make the line you're on more visible.
--- vim.opt.cursorline = true
+vim.opt.cursorline = true
 
 -- Sets the text width where the line will break. A value of 0 for unlimited.
 vim.opt.textwidth = 79
@@ -65,13 +68,18 @@ vim.cmd[[autocmd TermOpen * setlocal scrollback=-1]]
 vim.opt.mouse = ''
 
 -- Tabs
+-- The number of spaces for each tab.
 vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
+-- The number of spaces for each step of autoindent.
 vim.opt.shiftwidth = 4
+-- Makes sure that tabs are converted to spaces.
 vim.opt.expandtab = true
 
 -- Disable mouse for Vim and terminal.
 vim.opt.mouse = ''
+
+-- Adding a directory to the runtime path.
+-- vim.opt.runtimepath:append('~/.config/nvim/path/to/directory')
 
 -- formatoptions here tend to be overwritten somewhere else, e.g. plugins.
 -- Consider using manually when required or where loaded after everything else.
@@ -81,4 +89,4 @@ vim.opt.mouse = ''
 -- vim.opt.formatoptions = vim.opt.formatoptions + 'a'
 
 -- Setup neovim for virtual environment.
--- vim.cmd[[let g:python3_host_prog = '~/.pyenv/shims/python']]
+-- vim.cmd[[let g:python3_host_prog = '~/path/to/virtualenv/python']]
