@@ -34,9 +34,11 @@ bottom of the 'Installing Neovim' page).
 - nvm https://github.com/nvm-sh/nvm provides node and npm.
 - `nvm install node`
 - `npm install -g neovim`
+- `npm install -g @johnnymorganz/stylua-bin`
 - pyenv https://github.com/pyenv/pyenv provides python and pip.
 - `pip install neovim`
 - `pip install flake8`
+- `pip install black`
 - pyenv-virtualenv https://github.com/pyenv/pyenv-virtualenv if you require
   python virtual environments (optional).
 - `sudo apt update && sudo apt install xsel zathura xdotool rg texlive-full`

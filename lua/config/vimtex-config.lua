@@ -1,4 +1,4 @@
-vim.cmd[[
+vim.cmd([[
 " Viewer options: One may configure the viewer either by specifying a built-in
 " viewer method:
 let g:vimtex_view_method = 'zathura'
@@ -19,4 +19,4 @@ let g:vimtex_compiler_latexmk_engines = {
         \ 'context (luatex)' : '-pdf -pdflatex=context',
         \ 'context (xetex)'  : '-pdf -pdflatex=''texexec --xtx''',
         \}
-]]
+]])

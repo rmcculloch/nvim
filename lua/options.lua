@@ -1,16 +1,16 @@
 -- So Nvim can interact properly with the system clipboard.
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = "unnamedplus"
 
 -- Use to ensure formatting is maintained during paste.
-vim.opt.pastetoggle = '<F2>'
+vim.opt.pastetoggle = "<F2>"
 
 -- Set printer.
-vim.opt.pdev = 'HP-LaserJet-400-colorMFP-M475dn'
+vim.opt.pdev = "HP-LaserJet-400-colorMFP-M475dn"
 
 -- vim.opt.background = 'dark'
 
 -- This method uses {{{ at the start of the fold and }}} at the end.
-vim.opt.foldmethod = 'marker'
+vim.opt.foldmethod = "marker"
 
 -- Disable annoying temporary files.
 vim.opt.swapfile = false
@@ -26,7 +26,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Sets the list characters so you can see tabs, eol and spaces when :set list.
-vim.opt.listchars = 'eol:$,tab:>-,trail:~,extends:>,precedes:<'
+vim.opt.listchars = "eol:$,tab:>-,trail:~,extends:>,precedes:<"
 
 -- Sets the position of the cursor from the top and bottom of the page when scrolling.
 -- Set to a high number, e.g. 999, if you want the cursor in the middle of the page.
@@ -55,17 +55,17 @@ vim.opt.cursorline = true
 vim.opt.textwidth = 79
 
 -- Shows visible marker (vertical line) to indicate maximum text width.
-vim.opt.colorcolumn = '79'
+vim.opt.colorcolumn = "79"
 
 -- Prevents words breaking when the line wraps to the next line.
 vim.opt.linebreak = true
 
 -- Sets the nvim terminal buffer to max size.
 -- Max size seems to be 100020 lines.
-vim.cmd[[autocmd TermOpen * setlocal scrollback=-1]]
+vim.cmd([[autocmd TermOpen * setlocal scrollback=-1]])
 
--- Disable mouse.
-vim.opt.mouse = ''
+-- Autoindent
+vim.opt.autoindent = true
 
 -- Tabs
 -- The number of spaces for each tab.
@@ -76,7 +76,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 -- Disable mouse for Vim and terminal.
-vim.opt.mouse = ''
+vim.opt.mouse = ""
 
 -- Adding a directory to the runtime path.
 -- vim.opt.runtimepath:append('~/.config/nvim/path/to/directory')
@@ -90,3 +90,4 @@ vim.opt.mouse = ''
 
 -- Setup neovim for virtual environment.
 -- vim.cmd[[let g:python3_host_prog = '~/path/to/virtualenv/python']]
+-- hello
