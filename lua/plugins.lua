@@ -164,4 +164,12 @@ return require("packer").startup(function(use)
             require("config.treesitter-config")
         end,
     })
+    use({ "tpope/vim-fugitive" })
+    use {
+      'lewis6991/gitsigns.nvim',
+      -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
+      config = function()
+          require("config.gitsigns-config")
+      end,
+    }
 end)
