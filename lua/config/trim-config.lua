@@ -12,7 +12,7 @@
 require("trim").setup({
     -- if you want to ignore markdown file.
     -- you can specify filetypes.
-    disable = { "markdown", "python" },
+    ft_blocklist = { "markdown", "python" },
 
     -- if you want to ignore space of top
     patterns = {
